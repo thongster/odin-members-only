@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true })); // parse form info
 const passport = require('./config/passport');
 app.use(
   session({
-    secret: process.env.SECRET,
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
   })
