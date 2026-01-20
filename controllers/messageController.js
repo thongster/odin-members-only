@@ -1,0 +1,23 @@
+// import db queries
+const db = require('../db/queries');
+
+// express validator
+const { body, validationResult, matchedData } = require('express-validator');
+
+const validateMessage = [
+  body('title')
+    .trim()
+    .notEmpty()
+    .withMessage('Title is required')
+    .isLength({ min: 4, max: 30 })
+    .withMessage('Title must be between 4 and 30 characters'),
+
+  body('body')
+    .trim()
+    .notEmpty()
+    .withMessage('Message is required')
+    .isLength({ min: 10, max: 255 })
+    .withMessage('Message must be between 10 and 255 characters'),
+];
+
+module.exports = { validateMessage };

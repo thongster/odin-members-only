@@ -54,4 +54,4 @@ const logOut = async (req, res, next) => {
   });
 };
 
-module.exports = { showSignUp, signUp, logIn, logOut };
+module.exports = { validateUser, showSignUp, signUp, logIn, logOut };
