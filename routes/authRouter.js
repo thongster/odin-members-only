@@ -2,9 +2,9 @@ const { Router } = require('express');
 const authRouter = Router();
 const authController = require('../controllers/authController');
 
-authRouter.get('/');
+// authRouter.get('/');
 authRouter.get('/sign-up', authController.showSignUp);
-authRouter.post('/sign-up', authController.signUp);
+authRouter.post('/sign-up', authController.validateUser, authController.signUp);
 authRouter.post('/log-in', authController.logIn);
 authRouter.get('/log-out', authController.logOut);
 
