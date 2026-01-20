@@ -12,16 +12,33 @@ const validateUser = [
   body('username')
     .trim()
     .notEmpty()
-    .withMessage('Username (email) is required')
-    .isLength({ min: 2, max: 30 })
-    .withMessage('Username (email) must be between 2 and 30 characters'),
-
+    .withMessage('Email is required')
+    .isEmail()
+    .withMessage('Must be a valid email address')
+    .normalizeEmail()
+    .isLength({ max: 255 })
+    .withMessage('Email is too long'),
   body('password')
-    .trim()
     .notEmpty()
     .withMessage('Password is required')
-    .isLength({ min: 4, max: 30 })
-    .withMessage('Password must be between 4 and 30 characters'),
+    .isLength({ min: 6, max: 100 })
+    .withMessage('Password must be at least 6 characters'),
+  body('first_name')
+    .trim()
+    .notEmpty()
+    .withMessage('First name is required')
+    .isLength({ min: 1, max: 50 })
+    .withMessage('First name must be under 50 characters')
+    .matches(/^[a-zA-Z\s'-]+$/)
+    .withMessage('First name contains invalid characters'),
+  body('last_name')
+    .trim()
+    .notEmpty()
+    .withMessage('Last name is required')
+    .isLength({ min: 1, max: 50 })
+    .withMessage('Last name must be under 50 characters')
+    .matches(/^[a-zA-Z\s'-]+$/)
+    .withMessage('Last name contains invalid characters'),
 ];
 
 const showSignUp = async (req, res) => {
@@ -31,10 +48,15 @@ const showSignUp = async (req, res) => {
 const signUp = async (req, res, next) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    await db.query('INSERT INTO users (email, password_hash) VALUES ($1, $2)', [
-      req.body.username,
-      hashedPassword,
-    ]);
+    await db.query(
+      'INSERT INTO users (email, password_hash, first_name, last_name) VALUES ($1, $2, $3, $4)',
+      [
+        req.body.username,
+        hashedPassword,
+        req.body.first_name,
+        req.body.last_name,
+      ]
+    );
     res.redirect('/');
   } catch (error) {
     console.error(error);
