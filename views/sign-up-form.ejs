@@ -7,5 +7,17 @@
     <link rel="icon" type="image/x-icon" href="/logo.png" />
     <title><% if (title) { %><%= title %> | <% } %>Clubhouse</title>
   </head>
-  <body></body>
+  <body>
+    <form action="/sign-up" method="POST">
+      <label for="username">Username: </label>
+      <input type="email" name="username" required />
+      <label for="password">Password: </label>
+      <input type="password" name="password" required />
+      <label for="first_name">First Name: </label>
+      <input type="text" name="first_name" required />
+      <label for="last_name">Last Name: </label>
+      <input type="text" name="last_name" required />
+      <button type="submit">Sign Up</button>
+    </form>
+  </body>
 </html>
