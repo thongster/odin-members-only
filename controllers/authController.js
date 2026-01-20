@@ -4,7 +4,9 @@ const passport = require('../config/passport');
 const bcrypt = require('bcryptjs');
 
 // express validator
-const { body, validationResult, matchedData } = require('express-validator');
+const {
+  body /*, validationResult, matchedData*/,
+} = require('express-validator');
 
 const validateUser = [
   body('username')
@@ -23,13 +25,13 @@ const validateUser = [
 ];
 
 const showSignUp = async (req, res) => {
-  res.render('sign-up-form');
+  res.render('sign-up-form', { title: 'Sign Up' });
 };
 
 const signUp = async (req, res, next) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    await db.query('INSERT INTO users (username, password) VALUES ($1, $2)', [
+    await db.query('INSERT INTO users (email, password_hash) VALUES ($1, $2)', [
       req.body.username,
       hashedPassword,
     ]);

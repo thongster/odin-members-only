@@ -2,7 +2,9 @@
 const db = require('../db/queries');
 
 // express validator
-const { body, validationResult, matchedData } = require('express-validator');
+const {
+  body /*, validationResult, matchedData*/,
+} = require('express-validator');
 
 const validateMessage = [
   body('title')
