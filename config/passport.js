@@ -1,16 +1,12 @@
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-const pool = require('../db/pool.js');
+const db = require('../db/queries.js');
 
 passport.use(
   new LocalStrategy(async (username, password, done) => {
     try {
-      const { rows } = await pool.query(
-        'SELECT * FROM users WHERE username = $1',
-        [username]
-      );
-      const user = rows[0];
+      const user = await db.getUserByUsername(username);
 
       // if user does not exist
       if (!user) {
@@ -37,10 +33,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(async (id, done) => {
   try {
-    const { rows } = await pool.query('SELECT * FROM users WHERE id = $1', [
-      id,
-    ]);
-    const user = rows[0];
+    const user = await db.getUserById(id);
 
     done(null, user);
   } catch (err) {
