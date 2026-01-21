@@ -64,6 +64,10 @@ const signUp = async (req, res, next) => {
   }
 };
 
+const ShowLogIn = async (req, res) => {
+  res.render('log-in', { title: 'Log In' });
+};
+
 const logIn = passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/',
@@ -78,4 +82,4 @@ const logOut = async (req, res, next) => {
   });
 };
 
-module.exports = { validateUser, showSignUp, signUp, logIn, logOut };
+module.exports = { validateUser, showSignUp, signUp, ShowLogIn, logIn, logOut };
