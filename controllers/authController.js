@@ -59,7 +59,7 @@ const validateUserLogIn = [
 ];
 
 const showSignUp = async (req, res) => {
-  res.render('sign-up-form', { title: 'Sign Up' });
+  res.render('sign-up-form', { errors: [], title: 'Sign Up' });
 };
 
 const signUp = async (req, res, next) => {
@@ -82,7 +82,7 @@ const signUp = async (req, res, next) => {
 };
 
 const ShowLogIn = async (req, res) => {
-  res.render('log-in', { title: 'Log In' });
+  res.render('log-in', { errors: [], title: 'Log In' });
 };
 
 const logIn = passport.authenticate('local', {

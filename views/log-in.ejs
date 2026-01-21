@@ -8,6 +8,7 @@
     <title><% if (title) { %><%= title %> | <% } %>Clubhouse</title>
   </head>
   <body>
+    <%- include('partials/errors.ejs') %>
     <form action="/log-in" method="POST">
       <label for="username">Username: </label>
       <input type="email" name="username" required />
