@@ -8,7 +8,7 @@ const {
   body /*, validationResult, matchedData*/,
 } = require('express-validator');
 
-const validateUser = [
+const validateUserSignUp = [
   body('username')
     .trim()
     .notEmpty()
@@ -39,6 +39,23 @@ const validateUser = [
     .withMessage('Last name must be under 50 characters')
     .matches(/^[a-zA-Z\s'-]+$/)
     .withMessage('Last name contains invalid characters'),
+];
+
+const validateUserLogIn = [
+  body('username')
+    .trim()
+    .notEmpty()
+    .withMessage('Email is required')
+    .isEmail()
+    .withMessage('Must be a valid email address')
+    .normalizeEmail()
+    .isLength({ max: 255 })
+    .withMessage('Email is too long'),
+  body('password')
+    .notEmpty()
+    .withMessage('Password is required')
+    .isLength({ min: 6, max: 100 })
+    .withMessage('Password must be at least 6 characters'),
 ];
 
 const showSignUp = async (req, res) => {
@@ -82,4 +99,12 @@ const logOut = async (req, res, next) => {
   });
 };
 
-module.exports = { validateUser, showSignUp, signUp, ShowLogIn, logIn, logOut };
+module.exports = {
+  validateUserSignUp,
+  validateUserLogIn,
+  showSignUp,
+  signUp,
+  ShowLogIn,
+  logIn,
+  logOut,
+};
