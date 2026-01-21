@@ -60,7 +60,7 @@ const showSignUp = async (req, res) => {
   res.render('sign-up-form', { title: 'Sign Up' });
 };
 
-const signUp = async (req, res, next) => {
+const signUp = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).render('sign-up-form', {
@@ -90,13 +90,42 @@ const signUp = async (req, res, next) => {
 };
 
 const ShowLogIn = async (req, res) => {
-  res.render('log-in', { errors: [], title: 'Log In' });
+  res.render('log-in', { title: 'Log In' });
 };
 
-const logIn = passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/',
-});
+const logIn = (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).render('log-in', {
+      errors: errors.array(),
+      formData: req.body,
+      title: 'Log In',
+    });
+  }
+
+  passport.authenticate('local', (err, user, info) => {
+    // if database error or server fail
+    if (err) {
+      return next(err);
+    }
+
+    // if user does not match
+    if (!user) {
+      return res.status(401).render('log-in', {
+        errors: [{ msg: info?.message }],
+        formData: req.body,
+        title: 'Log In',
+      });
+    }
+
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      return res.redirect('/');
+    });
+  })(req, res, next);
+};
 
 const logOut = async (req, res, next) => {
   req.logout((err) => {

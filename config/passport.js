@@ -22,6 +22,8 @@ passport.use(
       if (!match) {
         return done(null, false, { message: 'Incorrect password' });
       }
+
+      // success
       return done(null, user);
     } catch (err) {
       return done(err);
