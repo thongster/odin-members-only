@@ -4,9 +4,7 @@ const passport = require('../config/passport');
 const bcrypt = require('bcryptjs');
 
 // express validator
-const {
-  body /*, validationResult, matchedData*/,
-} = require('express-validator');
+const { body, validationResult, matchedData } = require('express-validator');
 
 const validateUserSignUp = [
   body('username')
@@ -59,25 +57,35 @@ const validateUserLogIn = [
 ];
 
 const showSignUp = async (req, res) => {
-  res.render('sign-up-form', { errors: [], title: 'Sign Up' });
+  res.render('sign-up-form', { title: 'Sign Up' });
 };
 
 const signUp = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).render('sign-up-form', {
+      errors: errors.array(),
+      formData: req.body,
+      title: 'Sign Up',
+    });
+  }
+
+  const { username, password, first_name, last_name } = matchedData(req);
+
   try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
     await db.query(
       'INSERT INTO users (email, password_hash, first_name, last_name) VALUES ($1, $2, $3, $4)',
-      [
-        req.body.username,
-        hashedPassword,
-        req.body.first_name,
-        req.body.last_name,
-      ]
+      [username, hashedPassword, first_name, last_name]
     );
     res.redirect('/');
   } catch (error) {
     console.error(error);
-    next(error);
+    return res.status(500).render('sign-up-form', {
+      errors: [{ msg: 'Something went wrong. Please try again.' }],
+      formData: req.body,
+      title: 'Sign Up',
+    });
   }
 };
 
