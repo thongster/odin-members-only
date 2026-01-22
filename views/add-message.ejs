@@ -9,13 +9,6 @@
   </head>
   <body>
     <h1>Welcome to the Clubhouse</h1>
-    <% if (isAuthenticated) { %>
-        <h2>What's up <%= currentUser.first_name %> <%= currentUser.last_name %></h2>
-        <a href="/log-out">Log Out</a>
-    <% } else { %>
-        <h2>Log in to add your own messages!</h2>
-        <a href="/log-in">Log In</a>
-    <% } %>
     <div>
         <% if (isAuthenticated) { %>
             <a href="/add-message">Add Message</a>
