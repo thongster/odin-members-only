@@ -23,7 +23,11 @@ const validateMessage = [
 ];
 
 const showIndex = async (req, res) => {
-  res.render('messages', { title: 'Messages' });
+  if (!req.user) {
+    res.render('messages', { title: 'Messages' });
+  } else {
+    res.render('messages', { title: 'Im in' });
+  }
 };
 
 module.exports = { validateMessage, showIndex };

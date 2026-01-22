@@ -27,6 +27,10 @@ app.use(
   })
 );
 app.use(passport.session());
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
 app.use('/', messageRouter);
 app.use('/', authRouter);
 

@@ -83,7 +83,7 @@ const signUp = async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     await db.submitNewUser(username, hashedPassword, first_name, last_name);
-    res.redirect('/');
+    res.render('/', { title: 'Messages' });
   } catch (error) {
     console.error(error);
     return res.status(500).render('sign-up-form', {
