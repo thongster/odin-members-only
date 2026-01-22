@@ -21,6 +21,14 @@ const validateUserSignUp = [
     .withMessage('Password is required')
     .isLength({ min: 6, max: 100 })
     .withMessage('Password must be at least 6 characters'),
+  body('confirmPassword')
+    .notEmpty()
+    .withMessage('Password confirmation is required')
+    .bail()
+    .custom((value, { req }) => {
+      return value === req.body.password;
+    })
+    .withMessage('Passwords do not match'),
   body('first_name')
     .trim()
     .notEmpty()
