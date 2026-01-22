@@ -74,10 +74,7 @@ const signUp = async (req, res) => {
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    await db.query(
-      'INSERT INTO users (email, password_hash, first_name, last_name) VALUES ($1, $2, $3, $4)',
-      [username, hashedPassword, first_name, last_name]
-    );
+    await db.submitNewUser(username, hashedPassword, first_name, last_name);
     res.redirect('/');
   } catch (error) {
     console.error(error);
