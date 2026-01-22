@@ -80,10 +80,12 @@ const signUp = async (req, res) => {
 
   const { username, password, first_name, last_name } = matchedData(req);
 
+  console.log(username, password, first_name, last_name);
+
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     await db.submitNewUser(username, hashedPassword, first_name, last_name);
-    res.render('/', { title: 'Messages' });
+    res.render('messages', { title: 'Messages' });
   } catch (error) {
     console.error(error);
     return res.status(500).render('sign-up-form', {

@@ -14,12 +14,13 @@ passport.use(
       }
 
       // password match
-      const match = await bcrypt.compare(password, user.password);
+      const match = await bcrypt.compare(password, user.password_hash);
       if (!match) {
         return done(null, false, { message: 'Incorrect password' });
       }
 
       // success
+      console.log('login success');
       return done(null, user);
     } catch (err) {
       return done(err);
