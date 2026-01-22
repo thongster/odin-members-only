@@ -97,9 +97,9 @@ const signUp = async (req, res) => {
 };
 
 const ShowLogIn = async (req, res) => {
-  if (req.user) {
+  if (req.currentUser) {
     console.log('already logged in');
-    res.render('messages', { title: 'Messages', user: req.user });
+    res.render('messages', { title: 'Messages' });
   } else {
     res.render('log-in', { title: 'Log In' });
   }

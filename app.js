@@ -24,11 +24,15 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60, // 1 hour
+    },
   })
 );
 app.use(passport.session());
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
+  res.locals.isAuthenticated = req.isAuthenticated();
   next();
 });
 app.use('/', messageRouter);

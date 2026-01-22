@@ -9,8 +9,12 @@
   </head>
   <body>
     <h1>Welcome to the Clubhouse</h1>
-    <% if (locals.user) { %>
-        <h2>What's up <%= user.first_name %> <%= user.last_name %></h2>
+    <% if (isAuthenticated) { %>
+        <h2>What's up <%= currentUser.first_name %> <%= currentUser.last_name %></h2>
+        <a href="/log-out">Log Out</a>
+    <% } else { %>
+        <h2>Log in to add your own messages!</h2>
+        <a href="/log-in">Log In</a>
     <% } %>
   </body>
 </html>
