@@ -9,5 +9,8 @@
   </head>
   <body>
     <h1>Welcome to the Clubhouse</h1>
+    <% if (locals.user) { %>
+        <h2>What's up <%= user.first_name %> <%= user.last_name %></h2>
+    <% } %>
   </body>
 </html>
