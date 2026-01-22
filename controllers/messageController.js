@@ -22,4 +22,8 @@ const validateMessage = [
     .withMessage('Message must be between 10 and 255 characters'),
 ];
 
-module.exports = { validateMessage };
+const showIndex = (req, res) => {
+  res.render('/', { title: 'Messages' });
+};
+
+module.exports = { validateMessage, showIndex };
