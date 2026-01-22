@@ -18,6 +18,7 @@ const authRouter = require('./routes/authRouter');
 
 // set up sessions and passport
 const passport = require('./config/passport');
+const messageRouter = require('./routes/messageRouter');
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -26,7 +27,7 @@ app.use(
   })
 );
 app.use(passport.session());
-
+app.use('/', messageRouter);
 app.use('/', authRouter);
 
 // error handling

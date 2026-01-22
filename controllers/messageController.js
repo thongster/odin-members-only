@@ -22,8 +22,8 @@ const validateMessage = [
     .withMessage('Message must be between 10 and 255 characters'),
 ];
 
-const showIndex = (req, res) => {
-  res.render('/', { title: 'Messages' });
+const showIndex = async (req, res) => {
+  res.render('messages', { title: 'Messages' });
 };
 
 module.exports = { validateMessage, showIndex };
