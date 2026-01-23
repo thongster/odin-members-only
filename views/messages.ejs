@@ -10,6 +10,7 @@
   <body>
     <h1>Welcome to the Clubhouse</h1>
     <% if (isAuthenticated) { %>
+        <%- include('partials/errors.ejs') %>
         <h2>What's up <%= currentUser.first_name %> <%= currentUser.last_name %></h2>
         <a href="/log-out">Log Out</a>
     <% } else { %>

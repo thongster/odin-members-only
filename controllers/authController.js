@@ -65,12 +65,16 @@ const validateUserLogIn = [
 ];
 
 const showSignUp = async (req, res) => {
+  if (req.isAuthenticated()) {
+    console.log('check');
+    return res.redirect('/?error=alreadyloggedin');
+  }
   res.render('sign-up-form', { title: 'Sign Up' });
 };
 
 const signUp = async (req, res) => {
   if (req.isAuthenticated()) {
-    res.redirect('/');
+    return res.redirect('/?error=alreadyloggedin');
   }
 
   const errors = validationResult(req);
@@ -99,9 +103,8 @@ const signUp = async (req, res) => {
 };
 
 const ShowLogIn = async (req, res) => {
-  if (req.currentUser) {
-    console.log('already logged in');
-    res.render('messages', { title: 'Messages' });
+  if (req.isAuthenticated()) {
+    return res.redirect('/?error=alreadyloggedin');
   } else {
     res.render('log-in', { title: 'Log In' });
   }
@@ -146,7 +149,7 @@ const logOut = async (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect('/');
+    return res.redirect('/');
   });
 };
 
