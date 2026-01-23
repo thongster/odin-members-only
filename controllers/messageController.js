@@ -23,15 +23,18 @@ const validateMessage = [
 ];
 
 const showIndex = async (req, res) => {
-  res.render('messages', { title: 'Messages' });
+  let errors;
+  if (req.query.error && req.query.error === 'notloggedin') {
+    errors = [{ msg: 'You need to log in to do that' }];
+  } else {
+    errors = null;
+  }
+  res.render('messages', { title: 'Messages', errors: errors });
 };
 
 const showAddMessage = async (req, res) => {
   if (!req.isAuthenticated()) {
-    res.render('messages', {
-      title: 'Messages',
-      errors: [{ msg: 'Only members can add messages' }],
-    });
+    res.redirect('/?error=notloggedin');
   } else {
     res.render('add-message', { title: 'Add Message' });
   }
@@ -39,10 +42,7 @@ const showAddMessage = async (req, res) => {
 
 const addMessage = async (req, res) => {
   if (!req.isAuthenticated()) {
-    res.render('messages', {
-      title: 'Messages',
-      errors: [{ msg: 'Only members can add messages' }],
-    });
+    res.redirect('/?error=notloggedin');
   } else {
     res.render('add-message', { title: 'Add Message' });
   }

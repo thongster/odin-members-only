@@ -69,6 +69,10 @@ const showSignUp = async (req, res) => {
 };
 
 const signUp = async (req, res) => {
+  if (req.isAuthenticated()) {
+    res.redirect('/');
+  }
+
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).render('sign-up-form', {
@@ -79,8 +83,6 @@ const signUp = async (req, res) => {
   }
 
   const { username, password, first_name, last_name } = matchedData(req);
-
-  console.log(username, password, first_name, last_name);
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
