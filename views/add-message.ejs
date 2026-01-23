@@ -10,7 +10,13 @@
   <body>
     <h1>Welcome to the Clubhouse</h1>
     <div>
-      <form action="/add-message"></form>
+      <form action="/add-message" method="POST">
+        <label for="title">Title: </label>
+        <input type="text" name="title" required />
+        <label for="body">Message: </label>
+        <textarea name="body" rows="5" required></textarea>
+        <button type="submit"></button>
+      </form>
     </div>
   </body>
 </html>
