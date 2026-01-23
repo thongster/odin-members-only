@@ -4,5 +4,10 @@ const messageController = require('../controllers/messageController');
 
 messageRouter.get('/', messageController.showIndex);
 messageRouter.get('/add-message', messageController.showAddMessage);
+messageRouter.post(
+  '/add-message',
+  messageController.validateMessage,
+  messageController.addMessage
+);
 
 module.exports = messageRouter;

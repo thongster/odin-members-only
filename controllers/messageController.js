@@ -27,7 +27,7 @@ const showIndex = async (req, res) => {
 };
 
 const showAddMessage = async (req, res) => {
-  if (!req.isAuthenticated) {
+  if (!req.isAuthenticated()) {
     res.render('messages', {
       title: 'Messages',
       errors: [{ msg: 'Only members can add messages' }],
@@ -37,4 +37,15 @@ const showAddMessage = async (req, res) => {
   }
 };
 
-module.exports = { validateMessage, showIndex, showAddMessage };
+const addMessage = async (req, res) => {
+  if (!req.isAuthenticated()) {
+    res.render('messages', {
+      title: 'Messages',
+      errors: [{ msg: 'Only members can add messages' }],
+    });
+  } else {
+    res.render('add-message', { title: 'Add Message' });
+  }
+};
+
+module.exports = { validateMessage, showIndex, showAddMessage, addMessage };
