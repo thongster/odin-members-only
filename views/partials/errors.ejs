@@ -1,7 +1,7 @@
-<% if (locals.errors) { %>
+<% if (locals.status) { %>
     <ul>
-  <% errors.forEach((error) => { %>
-    <li><%= error.msg %></li>
+  <% status.forEach((state) => { %>
+    <li><%= state.msg %></li>
   <% }) %>
   </ul>
 <% } %>

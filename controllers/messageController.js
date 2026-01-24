@@ -20,35 +20,54 @@ const validateMessage = [
     .withMessage('Message must be between 10 and 255 characters'),
 ];
 
+const indexMessages = {
+  error: {
+    notloggedin: 'You need to log in to do that',
+    alreadyloggedin: "You're already logged in",
+    membershiperror: 'Something went wrong while updating membership',
+  },
+  success: {
+    membership: 'You are now a club member 🎉',
+    admin: 'You are now an admin',
+  },
+};
+
 const showIndex = async (req, res) => {
-  let errors;
-  if (req.query.error && req.query.error === 'notloggedin') {
-    errors = [{ msg: 'You need to log in to do that' }];
-  } else if (req.query.error && req.query.error === 'alreadyloggedin') {
-    errors = [{ msg: "You're already logged in" }];
-  } else {
-    errors = null;
+  let status = null;
+
+  if (req.query.error) {
+    const msg = indexMessages.error[req.query.error];
+    if (msg) {
+      status = [{ msg }];
+    }
+  }
+
+  if (req.query.success) {
+    const msg = indexMessages.success[req.query.success];
+    if (msg) {
+      status = [{ msg }];
+    }
   }
 
   const messages = await db.getMessages();
   console.log(messages);
-  console.log(errors ? errors : 'no error on show index');
+  console.log(status ? status : 'no status on show index');
   res.render('messages', {
     title: 'Messages',
-    errors: errors,
+    status: status,
     messages: messages,
   });
 };
 
 const showAddMessage = async (req, res) => {
-  let errors;
+  let status;
   if (!req.isAuthenticated()) {
     return res.redirect('/?error=notloggedin');
   } else if (req.query.error && req.query.error === 'addmessagefailed') {
-    errors = [{ msg: "You're already logged in" }];
+    status = [{ msg: "You're already logged in" }];
   }
 
-  res.render('add-message', { title: 'Add Message', errors: errors });
+  res.render('add-message', { title: 'Add Message', status: status });
 };
 
 const addMessage = async (req, res) => {
@@ -58,7 +77,7 @@ const addMessage = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).render('add-message', {
-        errors: errors.array(),
+        status: errors.array(),
         formData: req.body,
         title: 'Add Message',
       });

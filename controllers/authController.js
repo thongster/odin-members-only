@@ -80,7 +80,7 @@ const signUp = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).render('sign-up-form', {
-      errors: errors.array(),
+      status: errors.array(),
       formData: req.body,
       title: 'Sign Up',
     });
@@ -95,7 +95,7 @@ const signUp = async (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(500).render('sign-up-form', {
-      errors: [{ msg: 'Something went wrong. Please try again.' }],
+      status: [{ msg: 'Something went wrong. Please try again.' }],
       formData: req.body,
       title: 'Sign Up',
     });
@@ -114,7 +114,7 @@ const logIn = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).render('log-in', {
-      errors: errors.array(),
+      status: errors.array(),
       formData: req.body,
       title: 'Log In',
     });
@@ -129,7 +129,7 @@ const logIn = (req, res, next) => {
     // if user does not match
     if (!user) {
       return res.status(401).render('log-in', {
-        errors: [{ msg: info?.message }],
+        status: [{ msg: info?.message }],
         formData: req.body,
         title: 'Log In',
       });
