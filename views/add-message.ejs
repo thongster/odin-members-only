@@ -8,6 +8,7 @@
     <title><% if (title) { %><%= title %> | <% } %>Clubhouse</title>
   </head>
   <body>
+    <%- include('partials/header.ejs') %>
     <h1>Welcome to the Clubhouse</h1>
     <%- include('partials/errors.ejs') %>
     <div>
@@ -19,5 +20,6 @@
         <button type="submit">Add Message</button>
       </form>
     </div>
+    <%- include('partials/footer.ejs') %>
   </body>
 </html>
