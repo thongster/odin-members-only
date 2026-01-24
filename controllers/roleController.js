@@ -11,7 +11,7 @@ const validateMember = [
     .notEmpty()
     .withMessage('Answer is required')
     .isIn(['rasengan'])
-    .withMessage('Title must be between 4 and 30 characters'),
+    .withMessage('Answer is incorrect'),
 ];
 
 const validateAdmin = [
@@ -21,7 +21,7 @@ const validateAdmin = [
     .notEmpty()
     .withMessage('Answer is required')
     .isIn(['l'])
-    .withMessage('Title must be between 4 and 30 characters'),
+    .withMessage('Answer is incorrect'),
 ];
 
 const showMembership = async (req, res) => {
@@ -33,6 +33,18 @@ const showMembership = async (req, res) => {
 };
 
 const changeMembership = async (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/?error=notloggedin');
+  }
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).render('membership', {
+      status: errors.array(),
+      formData: req.body,
+      title: 'Membership',
+    });
+  }
+
   try {
     await db.makeMember(req.user.id);
     return res.redirect('/?success=membership');
