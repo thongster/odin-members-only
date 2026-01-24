@@ -9,12 +9,13 @@
   </head>
   <body>
     <%- include('partials/header.ejs') %> <%- include('partials/errors.ejs') %>
-    <form action="/log-in" method="POST">
-      <label for="username">Username: </label>
-      <input type="email" name="username" required />
-      <label for="password">Password: </label>
-      <input type="password" name="password" required />
-      <button type="submit">Log In</button>
+    <h1>Membership Entry</h1>
+    <form action="/membership" method="POST">
+      <p>To become a member you must prove your worthiness</p>
+      <p>What is the name of Naruto's signature jutsu?</p>
+      <label for="secret">Secret Answer: </label>
+      <input type="text" name="secret" required />
+      <button type="submit">Submit</button>
     </form>
     <%- include('partials/footer.ejs') %>
   </body>

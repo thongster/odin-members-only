@@ -1,6 +1,29 @@
 // import db queries
 const db = require('../db/queries');
 
+// express validator
+const { body, validationResult, matchedData } = require('express-validator');
+
+const validateMember = [
+  body('secret')
+    .trim()
+    .toLowerCase()
+    .notEmpty()
+    .withMessage('Answer is required')
+    .isIn(['rasengan'])
+    .withMessage('Title must be between 4 and 30 characters'),
+];
+
+const validateAdmin = [
+  body('secret')
+    .trim()
+    .toLowerCase()
+    .notEmpty()
+    .withMessage('Answer is required')
+    .isIn(['l'])
+    .withMessage('Title must be between 4 and 30 characters'),
+];
+
 const showMembership = async (req, res) => {
   if (!req.isAuthenticated()) {
     return res.redirect('/?error=notloggedin');
@@ -37,4 +60,11 @@ const changeAdmin = async (req, res) => {
   }
 };
 
-module.exports = { showMembership, showAdmin, changeMembership, changeAdmin };
+module.exports = {
+  showMembership,
+  showAdmin,
+  changeMembership,
+  changeAdmin,
+  validateMember,
+  validateAdmin,
+};

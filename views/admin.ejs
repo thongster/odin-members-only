@@ -9,13 +9,13 @@
   </head>
   <body>
     <%- include('partials/header.ejs') %><%- include('partials/errors.ejs') %>
-    <h1>Membership Entry</h1>
+    <h1>Admin Entry</h1>
     <form action="/admin" method="POST">
-      <p>To become a member you must prove your worthiness</p>
-      <p>What is the name of Naruto's signature jutsu?</p>
+      <p>To become an admin you must prove your worthiness</p>
+      <p>What is the name of the detective chasing Kira?</p>
       <label for="secret">Secret Answer: </label>
       <input type="text" name="secret" required />
-      <button type="submit">Log In</button>
+      <button type="submit">Submit</button>
     </form>
     <%- include('partials/footer.ejs') %>
   </body>
