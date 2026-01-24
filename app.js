@@ -19,6 +19,8 @@ const authRouter = require('./routes/authRouter');
 // set up sessions and passport
 const passport = require('./config/passport');
 const messageRouter = require('./routes/messageRouter');
+const roleRouter = require('./routes/roleRouter');
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -37,6 +39,7 @@ app.use((req, res, next) => {
 });
 app.use('/', messageRouter);
 app.use('/', authRouter);
+app.use('/', roleRouter);
 
 // error handling
 app.use((req, res) => {
