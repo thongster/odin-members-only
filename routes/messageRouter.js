@@ -9,5 +9,9 @@ messageRouter.post(
   messageController.validateMessage,
   messageController.addMessage
 );
+messageRouter.post(
+  '/delete-message/:message_id',
+  messageController.deleteMessage
+);
 
 module.exports = messageRouter;

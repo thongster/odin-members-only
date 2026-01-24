@@ -98,4 +98,12 @@ const addMessage = async (req, res) => {
   }
 };
 
-module.exports = { validateMessage, showIndex, showAddMessage, addMessage };
+const deleteMessage = async (req, res) => {};
+
+module.exports = {
+  validateMessage,
+  showIndex,
+  showAddMessage,
+  addMessage,
+  deleteMessage,
+};
