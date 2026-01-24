@@ -50,6 +50,17 @@ const getMessages = async () => {
   return rows;
 };
 
+const makeMember = async (user_id) => {
+  await pool.query(
+    `
+      UPDATE users 
+      SET is_member = true
+      WHERE id = $1
+    `,
+    [user_id]
+  );
+};
+
 module.exports = {
   submitNewUser,
   getUserByUsername,
