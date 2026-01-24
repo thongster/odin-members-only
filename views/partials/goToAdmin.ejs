@@ -1,0 +1,8 @@
+<% if (isAuthenticated && !currentUser?.is_admin) { %>
+    <div>
+        <h2>Become an Admin <a href="/admin">Here</a></h2>
+        <p>Admins can delete messages.</p>
+    </div>
+<% } %>
+
+

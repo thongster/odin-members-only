@@ -63,7 +63,7 @@ const showAdmin = async (req, res) => {
     return res.redirect('/?error=notloggedin');
   }
 
-  if (req.user.admin) {
+  if (req.user.is_admin) {
     return res.redirect('/?error=alreadyanadmin');
   }
 

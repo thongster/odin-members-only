@@ -1,0 +1,11 @@
+<% if (isAuthenticated && !currentUser?.is_member) { %>
+    <div>
+        <h2>Become a Member <a href="/membership">Here</a></h2>
+        <p>
+            Clubhouse members can add messages and see which other members wrote which
+            messages.
+        </p>
+    </div>
+<% } %>
+
+
