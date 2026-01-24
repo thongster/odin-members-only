@@ -72,6 +72,16 @@ const makeAdmin = async (user_id) => {
   );
 };
 
+const deleteMessageById = async (message_id) => {
+  await pool.query(
+    `
+      DELETE FROM messages 
+      WHERE id = $1
+    `,
+    [message_id]
+  );
+};
+
 module.exports = {
   submitNewUser,
   getUserByUsername,
@@ -80,4 +90,5 @@ module.exports = {
   getMessages,
   makeMember,
   makeAdmin,
+  deleteMessageById,
 };

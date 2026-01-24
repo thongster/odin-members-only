@@ -98,7 +98,15 @@ const addMessage = async (req, res) => {
   }
 };
 
-const deleteMessage = async (req, res) => {};
+const deleteMessage = async (req, res) => {
+  try {
+    await db.deleteMessageById(req.params.message_id);
+    return res.redirect('/?success=messagedeleted');
+  } catch (error) {
+    console.error(error);
+    return res.redirect('/?error=deletemessagefailed');
+  }
+};
 
 module.exports = {
   validateMessage,
