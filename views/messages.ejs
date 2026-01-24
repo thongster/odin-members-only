@@ -21,15 +21,19 @@
     <div>
         <% if (isAuthenticated) { %>
             <a href="/add-message">Add Message</a>
-            <% if (locals.messages) { %> 
-                <% messages.forEach((message) => { %>
-                    <h3><%= message.title %></h3>
-                    <p><%= message.body %></p>
-                    <p><%= message.created_at %></p>
-                <% }) %>
-            <% } %>
         <% } %>
-
+        <% if (locals.messages) { %> 
+            <% messages.forEach((message) => { %>
+                <h3><%= message.title %></h3>
+                <p><%= message.body %></p>
+                <p>
+                    <time class="message-date" 
+                        data-timestamp="<%= message.created_at.toISOString() %>">
+                    </time>
+                </p>
+            <% }) %>
+        <% } %>
     </div>
   </body>
+  <script src="/time.js"></script>
 </html>
