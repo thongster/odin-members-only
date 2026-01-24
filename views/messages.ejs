@@ -26,11 +26,19 @@
             <% messages.forEach((message) => { %>
                 <h3><%= message.title %></h3>
                 <p><%= message.body %></p>
-                <p>
-                    <time class="message-date" 
-                        data-timestamp="<%= message.created_at.toISOString() %>">
-                    </time>
-                </p>
+                <% if (isAuthenticated && message.is_member === true) { %>
+                    <p>
+                        <time class="message-date" 
+                            data-timestamp="<%= message.created_at.toISOString() %>">
+                        </time>
+                    </p>
+                    <p>Author: <%= message.first_name %> <%= message.last_name %></p>
+                    <% if (message.is_admin === true) { %>
+                        <form action="/delete-message/<%= message.message_id%>" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    <% } %>
+                <% } %>
             <% }) %>
         <% } %>
     </div>
