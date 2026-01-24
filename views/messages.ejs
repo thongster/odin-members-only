@@ -9,6 +9,16 @@
   </head>
   <body>
     <h1>Welcome to the Clubhouse</h1>
+    <div>
+        <div>
+            <h2>Become a Member <a href="/membership">Here</a></h2>
+            <p>Clubhouse members can add messages and see which other members wrote which messages.</p>
+        </div>
+        <div>
+            <h2>Become an Admin <a href="/admin">Here</a></h2>
+            <p>Admins can delete messages.</p>
+        </div>
+    </div>
     <% if (isAuthenticated) { %>
         <%- include('partials/errors.ejs') %>
         <h2>What's up <%= currentUser.first_name %> <%= currentUser.last_name %></h2>
@@ -22,6 +32,7 @@
         <% if (isAuthenticated) { %>
             <a href="/add-message">Add Message</a>
         <% } %>
+        <h2>Clubhouse Messages</h2>
         <% if (locals.messages) { %> 
             <% messages.forEach((message) => { %>
                 <h3><%= message.title %></h3>
