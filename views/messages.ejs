@@ -13,38 +13,12 @@
     <%- include('partials/errors.ejs') %>
     <%- include('partials/goToMembership.ejs') %>
     <%- include('partials/goToAdmin.ejs') %>
-    <% if (isAuthenticated) { %>
-        
-        <h2>What's up <%= currentUser.first_name %> <%= currentUser.last_name %></h2>
-        <a href="/log-out">Log Out</a>
-    <% } else { %>
-        <h2>Log in to add your own messages!</h2>
-        <a href="/log-in">Log In</a>
-    <% } %>
+    <%- include('partials/loginOrSignupDisplay.ejs') %>
     <div>
         <% if (isAuthenticated) { %>
             <a href="/add-message">Add Message</a>
         <% } %>
-        <h2>Clubhouse Messages</h2>
-        <% if (locals.messages) { %> 
-            <% messages.forEach((message) => { %>
-                <h3><%= message.title %></h3>
-                <p><%= message.body %></p>
-                <% if (isAuthenticated && currentUser?.is_member === true) { %>
-                    <p>
-                        <time class="message-date" 
-                            data-timestamp="<%= message.created_at.toISOString() %>">
-                        </time>
-                    </p>
-                    <p>Author: <%= message.first_name %> <%= message.last_name %></p>
-                    <% if (currentUser?.is_admin === true) { %>
-                        <form action="/delete-message/<%= message.message_id%>" method="POST">
-                            <button type="submit">Delete</button>
-                        </form>
-                    <% } %>
-                <% } %>
-            <% }) %>
-        <% } %>
+        <%- include('partials/messageBoard.ejs') %>
     </div>
     <%- include('partials/footer.ejs') %>
   </body>
