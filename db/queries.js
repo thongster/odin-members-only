@@ -61,10 +61,23 @@ const makeMember = async (user_id) => {
   );
 };
 
+const makeAdmin = async (user_id) => {
+  await pool.query(
+    `
+      UPDATE users 
+      SET is_member = true, SET is_admin = true
+      WHERE id = $1
+    `,
+    [user_id]
+  );
+};
+
 module.exports = {
   submitNewUser,
   getUserByUsername,
   getUserById,
   submitNewMessage,
   getMessages,
+  makeMember,
+  makeAdmin,
 };
