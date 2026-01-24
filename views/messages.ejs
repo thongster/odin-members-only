@@ -9,6 +9,7 @@
   </head>
   <body>
     <h1>Welcome to the Clubhouse</h1>
+    <%- include('partials/errors.ejs') %>
     <div>
         <div>
             <h2>Become a Member <a href="/membership">Here</a></h2>
@@ -20,11 +21,10 @@
         </div>
     </div>
     <% if (isAuthenticated) { %>
-        <%- include('partials/errors.ejs') %>
+        
         <h2>What's up <%= currentUser.first_name %> <%= currentUser.last_name %></h2>
         <a href="/log-out">Log Out</a>
     <% } else { %>
-        <%- include('partials/errors.ejs') %>
         <h2>Log in to add your own messages!</h2>
         <a href="/log-in">Log In</a>
     <% } %>
