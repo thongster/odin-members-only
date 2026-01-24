@@ -31,7 +31,7 @@ const showIndex = async (req, res) => {
   }
 
   const messages = await db.getMessages();
-
+  console.log(messages);
   console.log(errors ? errors : 'no error on show index');
   res.render('messages', {
     title: 'Messages',
