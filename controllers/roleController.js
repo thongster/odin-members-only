@@ -12,7 +12,7 @@ const showMembership = async (req, res) => {
 const changeMembership = async (req, res) => {
   try {
     await db.makeMember(req.user.id);
-    return res.redirect('/?membership=success');
+    return res.redirect('/?success=membership');
   } catch (error) {
     console.error(error);
     return res.redirect('/?error=membershiperror');
@@ -27,4 +27,14 @@ const showAdmin = async (req, res) => {
   res.render('admin', { title: 'Admin' });
 };
 
-module.exports = { showMembership, showAdmin };
+const changeAdmin = async (req, res) => {
+  try {
+    await db.makeAdmin(req.user.id);
+    return res.redirect('/?success=admin');
+  } catch (error) {
+    console.error(error);
+    return res.redirect('/?error=adminerror');
+  }
+};
+
+module.exports = { showMembership, showAdmin, changeMembership, changeAdmin };

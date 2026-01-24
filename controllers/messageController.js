@@ -25,10 +25,11 @@ const indexMessages = {
     notloggedin: 'You need to log in to do that',
     alreadyloggedin: "You're already logged in",
     membershiperror: 'Something went wrong while updating membership',
+    adminerror: 'Something went wrong while updating admin',
   },
   success: {
-    membership: 'You are now a club member 🎉',
-    admin: 'You are now an admin',
+    membership: 'You are now a club member!',
+    admin: 'You are now an admin!',
   },
 };
 
