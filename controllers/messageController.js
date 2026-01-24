@@ -30,8 +30,14 @@ const showIndex = async (req, res) => {
     errors = null;
   }
 
+  const messages = await db.getMessages();
+
   console.log(errors ? errors : 'no error on show index');
-  res.render('messages', { title: 'Messages', errors: errors });
+  res.render('messages', {
+    title: 'Messages',
+    errors: errors,
+    messages: messages,
+  });
 };
 
 const showAddMessage = async (req, res) => {
@@ -64,7 +70,7 @@ const addMessage = async (req, res) => {
 
     try {
       await db.submitNewMessage(req.user.id, title, body);
-      res.render('messages', { title: 'Messages' });
+      res.redirect('/');
     } catch (error) {
       console.error(error);
       return res.redirect('/add-message');

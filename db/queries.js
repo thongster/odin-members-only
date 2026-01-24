@@ -31,9 +31,29 @@ const submitNewMessage = async (user_id, title, body) => {
   );
 };
 
+const getMessages = async () => {
+  const { rows } = await pool.query(`
+    SELECT messages.id AS message_id,
+    messages.title,
+    messages.body,
+    messages.created_at,
+    users.id AS user_id,
+    users.first_name,
+    users.last_name,
+    users.is_member,
+    users.is_admin
+    FROM messages 
+    JOIN users
+    ON messages.user_id = users.id
+    ORDER BY created_at DESC`);
+
+  return rows;
+};
+
 module.exports = {
   submitNewUser,
   getUserByUsername,
   getUserById,
   submitNewMessage,
+  getMessages,
 };
