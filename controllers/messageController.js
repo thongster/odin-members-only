@@ -28,10 +28,12 @@ const indexMessages = {
     adminerror: 'Something went wrong while updating admin',
     alreadyamember: "You're already a member!",
     alreadyanadmin: "You're already an admin!",
+    deletemessagefailed: 'Something went wrong with deleting the message',
   },
   success: {
     membership: 'You are now a club member!',
     admin: 'You are now an admin!',
+    messagedeleted: 'Messaged deleted successfully!',
   },
 };
 
