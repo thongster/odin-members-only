@@ -21,7 +21,6 @@ const validateMessage = [
 ];
 
 const showIndex = async (req, res) => {
-  console.log(req.query.error);
   let errors;
   if (req.query.error && req.query.error === 'notloggedin') {
     errors = [{ msg: 'You need to log in to do that' }];
@@ -31,16 +30,19 @@ const showIndex = async (req, res) => {
     errors = null;
   }
 
-  console.log(errors);
+  console.log(errors ? errors : 'no error on show index');
   res.render('messages', { title: 'Messages', errors: errors });
 };
 
 const showAddMessage = async (req, res) => {
+  let errors;
   if (!req.isAuthenticated()) {
     return res.redirect('/?error=notloggedin');
-  } else {
-    res.render('add-message', { title: 'Add Message' });
+  } else if (req.query.error && req.query.error === 'addmessagefailed') {
+    errors = [{ msg: "You're already logged in" }];
   }
+
+  res.render('add-message', { title: 'Add Message', errors: errors });
 };
 
 const addMessage = async (req, res) => {
@@ -49,25 +51,23 @@ const addMessage = async (req, res) => {
   } else {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).render('sign-up-form', {
+      return res.status(400).render('add-message', {
         errors: errors.array(),
         formData: req.body,
-        title: 'Sign Up',
+        title: 'Add Message',
       });
     }
 
     const { title, body } = matchedData(req);
+
+    console.log(req.currentUser);
 
     try {
       await db.submitNewMessage(req.currentUser.id, title, body);
       res.render('messages', { title: 'Messages' });
     } catch (error) {
       console.error(error);
-      return res.status(500).render('sign-up-form', {
-        errors: [{ msg: 'Something went wrong. Please try again.' }],
-        formData: req.body,
-        title: 'Sign Up',
-      });
+      return res.redirect('/add-message');
     }
   }
 };
