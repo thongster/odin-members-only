@@ -26,7 +26,7 @@ const getUserById = async (id) => {
 
 const submitNewMessage = async (user_id, title, body) => {
   await pool.query(
-    'INSERT INTO messages (used_id, title, body) VALUES ($1, $2, $3)',
+    'INSERT INTO messages (user_id, title, body) VALUES ($1, $2, $3)',
     [user_id, title, body]
   );
 };

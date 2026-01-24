@@ -60,10 +60,10 @@ const addMessage = async (req, res) => {
 
     const { title, body } = matchedData(req);
 
-    console.log(req.currentUser);
+    console.log(req.user);
 
     try {
-      await db.submitNewMessage(req.currentUser.id, title, body);
+      await db.submitNewMessage(req.user.id, title, body);
       res.render('messages', { title: 'Messages' });
     } catch (error) {
       console.error(error);
