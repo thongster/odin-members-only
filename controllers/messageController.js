@@ -26,6 +26,8 @@ const indexMessages = {
     alreadyloggedin: "You're already logged in",
     membershiperror: 'Something went wrong while updating membership',
     adminerror: 'Something went wrong while updating admin',
+    alreadyamember: "You're already a member!",
+    alreadyanadmin: "You're already an admin!",
   },
   success: {
     membership: 'You are now a club member!',
@@ -51,8 +53,6 @@ const showIndex = async (req, res) => {
   }
 
   const messages = await db.getMessages();
-  console.log(messages);
-  console.log(status ? status : 'no status on show index');
   res.render('messages', {
     title: 'Messages',
     status: status,

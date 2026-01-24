@@ -29,6 +29,10 @@ const showMembership = async (req, res) => {
     return res.redirect('/?error=notloggedin');
   }
 
+  if (req.user.is_member) {
+    return res.redirect('/?error=alreadyamember');
+  }
+
   res.render('membership', { title: 'Membership' });
 };
 
@@ -59,10 +63,26 @@ const showAdmin = async (req, res) => {
     return res.redirect('/?error=notloggedin');
   }
 
+  if (req.user.admin) {
+    return res.redirect('/?error=alreadyanadmin');
+  }
+
   res.render('admin', { title: 'Admin' });
 };
 
 const changeAdmin = async (req, res) => {
+  if (!req.isAuthenticated()) {
+    return res.redirect('/?error=notloggedin');
+  }
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).render('admin', {
+      status: errors.array(),
+      formData: req.body,
+      title: 'Admin',
+    });
+  }
+
   try {
     await db.makeAdmin(req.user.id);
     return res.redirect('/?success=admin');
