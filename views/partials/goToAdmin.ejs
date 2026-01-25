@@ -1,8 +1,10 @@
-<% if (isAuthenticated && !currentUser?.is_admin) { %>
-    <div>
-        <h2>Become an Admin <a href="/admin">Here</a></h2>
-        <p>Admins can delete messages.</p>
-    </div>
+<% if (isAuthenticated && currentUser?.is_member && !currentUser?.is_admin) { %>
+  <div class="upgrade-panel admin">
+    <h3>Admin Advancement</h3>
+    <p>
+      Members can apply for admin powers.
+      Admins can delete messages.
+    </p>
+    <a class="upgrade-button" href="/admin">Become an Admin</a>
+  </div>
 <% } %>
-
-

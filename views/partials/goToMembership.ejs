@@ -1,11 +1,9 @@
 <% if (isAuthenticated && !currentUser?.is_member) { %>
-    <div>
-        <h2>Become a Member <a href="/membership">Here</a></h2>
-        <p>
-            Clubhouse members can add messages and see which other members wrote which
-            messages.
-        </p>
-    </div>
+  <div class="upgrade-panel">
+    <h3>Locked Feature</h3>
+    <p>
+      Join the Clubhouse to unlock member features.
+    </p>
+    <a class="upgrade-button" href="/membership">Become a Member</a>
+  </div>
 <% } %>
-
-

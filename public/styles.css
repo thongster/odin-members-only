@@ -275,6 +275,47 @@ button:hover {
 }
 
 /* =========================
+   Upgrade / Progress Panels
+   ========================= */
+
+.upgrade-panel {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-main);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  max-width: 32rem;
+}
+
+.upgrade-panel h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.upgrade-panel p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.upgrade-button {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border-dark);
+  background: linear-gradient(#fdfdfd, #dcdcdc);
+  color: var(--text-main);
+  font-size: 0.85rem;
+}
+
+.upgrade-button:hover {
+  background: linear-gradient(#ffffff, #cfcfcf);
+}
+
+/* Admin variation */
+.upgrade-panel.admin {
+  border-color: var(--accent-primary);
+}
+
+/* =========================
    Mobile adjustments
    ========================= */
 
