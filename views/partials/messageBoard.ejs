@@ -1,20 +1,43 @@
-<h2>Clubhouse Messages</h2>
-<% if (locals.messages) { %> 
-    <% messages.forEach((message) => { %>
-        <h3><%= message.title %></h3>
-        <p><%= message.body %></p>
-        <% if (isAuthenticated && currentUser?.is_member === true) { %>
-            <p>
-                <time class="message-date" 
-                    data-timestamp="<%= message.created_at.toISOString() %>">
-                </time>
-            </p>
-            <p>Author: <%= message.first_name %> <%= message.last_name %></p>
+<section class="message-board">
+    <div class="board-header panel">
+        <h2 class="board-title">Clubhouse Messages</h2>
+    </div>
+
+  <% if (locals.messages && messages.length > 0) { %>
+    <ul class="message-list">
+      <% messages.forEach((message) => { %>
+        <li class="message-item panel">
+          <h3 class="message-title"><%= message.title %></h3>
+
+          <p class="message-body"><%= message.body %></p>
+
+          <% if (isAuthenticated && currentUser?.is_member === true) { %>
+            <div class="message-meta">
+              <time
+                class="message-date"
+                data-timestamp="<%= message.created_at.toISOString() %>">
+              </time>
+
+              <span class="message-author">
+                by <%= message.first_name %> <%= message.last_name %>
+              </span>
+            </div>
+
             <% if (currentUser?.is_admin === true) { %>
-                <form action="/delete-message/<%= message.message_id%>" method="POST">
-                    <button type="submit">Delete</button>
-                </form>
+              <form
+                class="message-actions"
+                action="/delete-message/<%= message.message_id %>"
+                method="POST">
+                <button type="submit">Delete</button>
+              </form>
             <% } %>
-        <% } %>
-    <% }) %>
-<% } %>
+          <% } %>
+        </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p class="no-messages">
+      No messages yet. Be the first to post!
+    </p>
+  <% } %>
+</section>

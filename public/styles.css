@@ -406,6 +406,77 @@ button:hover {
 }
 
 /* =========================
+   Message Board Header
+   ========================= */
+
+.board-header {
+  margin-bottom: 1rem;
+  padding: 0.6rem 0.8rem;
+  background-color: var(--bg-panel-alt);
+  border-left: 4px solid var(--accent-primary);
+  border-bottom: 4px solid var(--accent-primary);
+}
+
+.board-title {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+/* =========================
+   Message Board
+   ========================= */
+
+.message-board {
+  margin-top: 1rem;
+}
+
+.message-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.message-item {
+  margin-bottom: 1rem;
+}
+
+.message-title {
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+}
+
+.message-body {
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  white-space: pre-wrap;
+}
+
+.message-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.message-author {
+  font-style: italic;
+}
+
+.message-actions {
+  margin-top: 0.5rem;
+}
+
+.message-actions button {
+  font-size: 0.75rem;
+}
+
+.no-messages {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* =========================
    Mobile adjustments
    ========================= */
 
