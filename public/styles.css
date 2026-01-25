@@ -135,6 +135,11 @@ button:hover {
   margin-bottom: 0;
 }
 
+.club-header a {
+  color: var(--text-main);
+  text-decoration: none;
+}
+
 .club-header-inner {
   display: flex;
   justify-content: space-between;
