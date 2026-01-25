@@ -2,6 +2,8 @@
 
 _A Members-Only Message Board_
 
+Live Demo: https://animeinternetclub.up.railway.app/
+
 ## Overview
 
 **Anime Internet Club** is a full-stack web application built as part of _The Odin Project_ It’s a small, Anime fan club members-only message board with an intentionally old-internet / early forum feel.
