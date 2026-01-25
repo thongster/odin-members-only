@@ -48,13 +48,13 @@ body > * {
 }
 
 /* =========================
-   Page Layout
+   Main Page Container
    ========================= */
 
-.page-wrapper {
-  max-width: 56rem; /* ~896px */
+.page-container {
+  max-width: 60rem;
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 1rem;
 }
 
 /* =========================
@@ -132,7 +132,7 @@ button:hover {
    ========================= */
 
 .club-header {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
 }
 
 .club-header-inner {
@@ -313,6 +313,48 @@ button:hover {
 /* Admin variation */
 .upgrade-panel.admin {
   border-color: var(--accent-primary);
+}
+
+/* =========================
+   Membership Page
+   ========================= */
+
+.membership-panel {
+  max-width: 30rem;
+  margin: 0 auto;
+}
+
+.membership-intro {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.membership-question {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.membership-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.membership-form label {
+  font-size: 0.85rem;
+}
+
+.membership-form input {
+  padding: 0.4rem;
+  border: 1px solid var(--border-main);
+  font-family: var(--font-main);
+}
+
+.membership-form button {
+  align-self: flex-start;
+  margin-top: 0.5rem;
 }
 
 /* =========================

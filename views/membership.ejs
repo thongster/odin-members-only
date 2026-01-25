@@ -8,15 +8,33 @@
     <title><% if (title) { %><%= title %> | <% } %>Clubhouse</title>
   </head>
   <body>
-    <%- include('partials/header.ejs') %> <%- include('partials/errors.ejs') %>
-    <h1>Membership Entry</h1>
-    <form action="/membership" method="POST">
-      <p>To become a member you must prove your worthiness</p>
-      <p>What is the name of Naruto's signature jutsu?</p>
-      <label for="secret">Secret Answer: </label>
-      <input type="text" name="secret" required />
-      <button type="submit">Submit</button>
-    </form>
-    <%- include('partials/footer.ejs') %>
+    <body>
+      <%- include('partials/header.ejs') %>
+
+      <main class="page-container">
+        <%- include('partials/errors.ejs') %>
+
+        <section class="panel membership-panel">
+          <h2>Membership Entry</h2>
+
+          <p class="membership-intro">
+            To become a member, you must prove your worthiness.
+          </p>
+
+          <p class="membership-question">
+            What is the name of Naruto's signature jutsu?
+          </p>
+
+          <form action="/membership" method="POST" class="membership-form">
+            <label for="secret">Secret Answer:</label>
+            <input type="text" name="secret" required />
+
+            <button type="submit">Submit</button>
+          </form>
+        </section>
+      </main>
+
+      <%- include('partials/footer.ejs') %>
+    </body>
   </body>
 </html>
