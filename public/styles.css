@@ -1,3 +1,128 @@
+:root {
+  /* Colors */
+  --bg-main: #ece9d8;
+  --bg-panel: #ffffff;
+  --bg-panel-alt: #f5f6fa;
+
+  --border-main: #9ba7c1;
+  --border-dark: #6b7a99;
+
+  --text-main: #1f2933;
+  --text-muted: #555f73;
+
+  --accent-primary: #316ac5;
+  --accent-secondary: #2c5aa0;
+  --accent-success: #2e7d32;
+  --accent-error: #c0392b;
+
+  /* Fonts */
+  --font-main: Tahoma, Verdana, 'Segoe UI', sans-serif;
+  --font-mono: 'Courier New', monospace;
+}
+
+/* =========================
+   Global Reset & Structure
+   ========================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
 body {
-  background-color: aquamarine;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.5;
+}
+
+body > * {
+  width: 100%;
+}
+
+/* =========================
+   Page Layout
+   ========================= */
+
+.page-wrapper {
+  max-width: 56rem; /* ~896px */
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+/* =========================
+   Typography
+   ========================= */
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+/* =========================
+   Links
+   ========================= */
+
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Panels (Core UI Block)
+   ========================= */
+
+.panel {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-main);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* =========================
+   Buttons
+   ========================= */
+
+button {
+  font-family: var(--font-main);
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border-dark);
+  background: linear-gradient(#fdfdfd, #dcdcdc);
+  cursor: pointer;
+}
+
+button:hover {
+  background: linear-gradient(#ffffff, #cfcfcf);
 }
