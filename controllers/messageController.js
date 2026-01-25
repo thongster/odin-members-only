@@ -43,22 +43,23 @@ const showIndex = async (req, res) => {
   if (req.query.error) {
     const msg = indexMessages.error[req.query.error];
     if (msg) {
-      status = [{ msg }];
+      status = [{ msg, type: 'error' }];
     }
   }
 
   if (req.query.success) {
     const msg = indexMessages.success[req.query.success];
     if (msg) {
-      status = [{ msg }];
+      status = [{ msg, type: 'success' }];
     }
   }
 
   const messages = await db.getMessages();
+
   res.render('messages', {
     title: 'Messages',
-    status: status,
-    messages: messages,
+    status,
+    messages,
   });
 };
 
@@ -67,7 +68,7 @@ const showAddMessage = async (req, res) => {
   if (!req.isAuthenticated()) {
     return res.redirect('/?error=notloggedin');
   } else if (req.query.error && req.query.error === 'addmessagefailed') {
-    status = [{ msg: "You're already logged in" }];
+    status = [{ msg: "You're already logged in", type: 'error' }];
   }
 
   res.render('add-message', { title: 'Add Message', status: status });

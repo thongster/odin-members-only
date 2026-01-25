@@ -1,5 +1,5 @@
 <% if (locals.status) { %>
-  <div class="alert-panel">
+  <div class="alert-panel <%= status[0].type === 'success' ? 'alert-success' : 'alert-error' %>">
     <ul class="alert-list">
       <% status.forEach((state) => { %>
         <li class="alert-item"><%= state.msg %></li>

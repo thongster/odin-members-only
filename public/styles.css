@@ -258,6 +258,22 @@ button:hover {
   word-wrap: break-word;
 }
 
+.alert-error .alert-item {
+  color: var(--accent-error);
+}
+
+.alert-success .alert-item {
+  color: var(--accent-success);
+}
+
+.alert-success {
+  border-color: var(--accent-success);
+}
+
+.alert-error {
+  border-color: var(--border-main);
+}
+
 /* =========================
    Mobile adjustments
    ========================= */
