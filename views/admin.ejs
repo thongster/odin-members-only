@@ -8,15 +8,32 @@
     <title><% if (title) { %><%= title %> | <% } %>Clubhouse</title>
   </head>
   <body>
-    <%- include('partials/header.ejs') %><%- include('partials/errors.ejs') %>
-    <h1>Admin Entry</h1>
-    <form action="/admin" method="POST">
-      <p>To become an admin you must prove your worthiness</p>
-      <p>What is the name of the detective chasing Kira?</p>
-      <label for="secret">Secret Answer: </label>
-      <input type="text" name="secret" required />
-      <button type="submit">Submit</button>
-    </form>
+    <%- include('partials/header.ejs') %>
+
+    <main class="page-container">
+      <%- include('partials/errors.ejs') %>
+
+      <section class="panel membership-panel admin-panel">
+        <h1>Admin Advancement</h1>
+
+        <p class="membership-intro">
+          Admins are entrusted with moderation powers. Only true insiders may
+          proceed.
+        </p>
+
+        <p class="membership-question">
+          What is the name of the detective chasing Kira?
+        </p>
+
+        <form action="/admin" method="POST" class="membership-form">
+          <label for="secret">Secret Answer:</label>
+          <input type="text" name="secret" required />
+
+          <button type="submit">Submit</button>
+        </form>
+      </section>
+    </main>
+
     <%- include('partials/footer.ejs') %>
   </body>
 </html>
