@@ -126,3 +126,52 @@ button {
 button:hover {
   background: linear-gradient(#ffffff, #cfcfcf);
 }
+
+/* =========================
+   Club Header
+   ========================= */
+
+.club-header {
+  margin-bottom: 1.5rem;
+}
+
+.club-header-inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.club-logo img {
+  width: 48px;
+  height: 48px;
+}
+
+.club-name {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.club-tagline {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* =========================
+   Mobile adjustments
+   ========================= */
+
+@media (max-width: 600px) {
+  .club-header-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  .club-name {
+    font-size: 1.4rem;
+  }
+}
