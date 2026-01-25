@@ -366,6 +366,45 @@ button:hover {
   border-color: var(--accent-primary);
 }
 
+.membership-form textarea {
+  padding: 0.4rem;
+  border: 1px solid var(--border-main);
+  font-family: var(--font-main);
+  resize: vertical;
+}
+
+/* =========================
+   User Action Panel
+   ========================= */
+
+.user-actions {
+  margin-bottom: 1rem;
+}
+
+.user-greeting {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.action-links {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.action-button {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border-dark);
+  background: linear-gradient(#fdfdfd, #dcdcdc);
+  color: var(--text-main);
+  font-size: 0.85rem;
+}
+
+.action-button:hover {
+  background: linear-gradient(#ffffff, #cfcfcf);
+}
+
 /* =========================
    Mobile adjustments
    ========================= */

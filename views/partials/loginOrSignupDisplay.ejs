@@ -1,11 +1,21 @@
-    <% if (isAuthenticated) { %>
-        <h2>What's up <%= currentUser.first_name %> <%= currentUser.last_name %></h2>
-        <a href="/add-message">Add Message</a>
-        <a href="/log-out">Log Out</a>
-    <% } else { %>
-        <div>
-            <h2>Log in or Sign Up to add your own messages!</h2>
-            <a href="/log-in">Log In</a>
-            <a href="/sign-up">Sign Up</a>
-        </div>
-    <% } %>
+<section class="panel user-actions">
+  <% if (isAuthenticated) { %>
+    <h2 class="user-greeting">
+      Hello <%= currentUser.first_name %> <%= currentUser.last_name %>!
+    </h2>
+
+    <div class="action-links">
+      <a href="/add-message" class="action-button">Add Message</a>
+      <a href="/log-out" class="action-button">Log Out</a>
+    </div>
+  <% } else { %>
+    <h2 class="user-greeting">
+      Log in or Sign Up to join the Clubhouse
+    </h2>
+
+    <div class="action-links">
+      <a href="/log-in" class="action-button">Log In</a>
+      <a href="/sign-up" class="action-button">Sign Up</a>
+    </div>
+  <% } %>
+</section>
