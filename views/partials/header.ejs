@@ -1,12 +1,16 @@
 <header class="club-header panel">
   <div class="club-header-inner">
-    <div class="club-logo">
-      <img src="/logo.png" alt="Clubhouse Logo" />
+    <div class="club-header-left">
+      <div class="club-logo">
+        <img src="/logo.png" alt="Anime Internet Club Logo" />
+      </div>
+
+      <div class="club-title">
+        <h1 class="club-name">Anime Internet Club</h1>
+        <p class="club-tagline">Members-only message board · Est. 2004</p>
+      </div>
     </div>
 
-    <div class="club-title">
-      <h1 class="club-name">Anime Internet Club</h1>
-      <p class="club-tagline">Members-only message board</p>
-    </div>
+    <div class="club-header-right"><%- include('memberStatus.ejs') %></div>
   </div>
 </header>

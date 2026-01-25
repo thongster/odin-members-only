@@ -8,11 +8,9 @@
     <title><% if (title) { %><%= title %> | <% } %>Clubhouse</title>
   </head>
   <body>
-    <%- include('partials/header.ejs') %>
-    <h1>Welcome to the Clubhouse</h1>
-    <%- include('partials/memberStatus.ejs') %> <%-
-    include('partials/errors.ejs') %> <%- include('partials/goToMembership.ejs')
-    %> <%- include('partials/goToAdmin.ejs') %> <%-
+    <%- include('partials/header.ejs') %> <%- include('partials/errors.ejs') %>
+    <%- include('partials/goToMembership.ejs') %> <%-
+    include('partials/goToAdmin.ejs') %> <%-
     include('partials/loginOrSignupDisplay.ejs') %> <%-
     include('partials/messageBoard.ejs') %> <%- include('partials/footer.ejs')
     %>

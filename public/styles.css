@@ -137,15 +137,23 @@ button:hover {
 
 .club-header-inner {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 1rem;
   max-width: 48rem;
   margin: 0 auto;
+  gap: 1rem;
+}
+
+.club-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .club-logo img {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
+  image-rendering: pixelated;
 }
 
 .club-name {
@@ -191,6 +199,40 @@ button:hover {
 }
 
 /* =========================
+   Member Status (Header)
+   ========================= */
+
+.member-status {
+  display: flex;
+  align-items: center;
+}
+
+.status {
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border-dark);
+  white-space: nowrap;
+}
+
+/* Role colors */
+.status.visitor {
+  background-color: #e0e0e0;
+}
+
+.status.user {
+  background-color: #dbe7ff;
+}
+
+.status.member {
+  background-color: #dff3e3;
+}
+
+.status.admin {
+  background-color: #fde2e2;
+}
+
+/* =========================
    Mobile adjustments
    ========================= */
 
@@ -199,10 +241,14 @@ button:hover {
     flex-direction: column;
     align-items: center;
     text-align: center;
+  }
+
+  .club-header-left {
+    flex-direction: column;
     gap: 0.5rem;
   }
 
-  .club-name {
-    font-size: 1.4rem;
+  .member-status {
+    margin: 0rem;
   }
 }

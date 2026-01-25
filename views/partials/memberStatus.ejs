@@ -1,13 +1,11 @@
-<div class="user-status">
-  <strong>Status:</strong>
-
+<div class="member-status">
   <% switch (true) {
     case !isAuthenticated: %>
-      <span class="status visitor">Visitor</span>
+      <span class="status visitor">Lurker</span>
       <% break;
 
     case isAuthenticated && !currentUser.is_member: %>
-      <span class="status user">User</span>
+      <span class="status user">Poster</span>
       <% break;
 
     case isAuthenticated && currentUser.is_member && !currentUser.is_admin: %>
@@ -15,7 +13,7 @@
       <% break;
 
     case isAuthenticated && currentUser.is_member && currentUser.is_admin: %>
-      <span class="status admin">Admin</span>
+      <span class="status admin">Moderator</span>
       <% break;
   } %>
 </div>
