@@ -10,18 +10,12 @@
   <body>
     <%- include('partials/header.ejs') %>
     <h1>Welcome to the Clubhouse</h1>
-    <%- include('partials/memberStatus.ejs') %>
-    <%- include('partials/errors.ejs') %>
-    <%- include('partials/goToMembership.ejs') %>
-    <%- include('partials/goToAdmin.ejs') %>
-    <%- include('partials/loginOrSignupDisplay.ejs') %>
-    <div>
-        <% if (isAuthenticated) { %>
-            <a href="/add-message">Add Message</a>
-        <% } %>
-        <%- include('partials/messageBoard.ejs') %>
-    </div>
-    <%- include('partials/footer.ejs') %>
+    <%- include('partials/memberStatus.ejs') %> <%-
+    include('partials/errors.ejs') %> <%- include('partials/goToMembership.ejs')
+    %> <%- include('partials/goToAdmin.ejs') %> <%-
+    include('partials/loginOrSignupDisplay.ejs') %> <%-
+    include('partials/messageBoard.ejs') %> <%- include('partials/footer.ejs')
+    %>
   </body>
   <script src="/time.js"></script>
 </html>

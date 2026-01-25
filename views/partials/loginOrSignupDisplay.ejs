@@ -1,5 +1,6 @@
     <% if (isAuthenticated) { %>
         <h2>What's up <%= currentUser.first_name %> <%= currentUser.last_name %></h2>
+        <a href="/add-message">Add Message</a>
         <a href="/log-out">Log Out</a>
     <% } else { %>
         <div>
