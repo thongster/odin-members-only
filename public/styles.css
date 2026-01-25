@@ -233,6 +233,32 @@ button:hover {
 }
 
 /* =========================
+   Alert / Status Messages
+   ========================= */
+
+.alert-panel {
+  background-color: var(--bg-panel-alt);
+  border: 1px solid var(--border-main);
+  padding: 1rem 2rem;
+  margin: 0 auto 1rem auto;
+  width: fit-content;
+  max-width: 90%;
+}
+
+.alert-list {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  list-style: none;
+}
+
+.alert-item {
+  font-size: 0.85rem;
+  color: var(--accent-error);
+  word-wrap: break-word;
+}
+
+/* =========================
    Mobile adjustments
    ========================= */
 

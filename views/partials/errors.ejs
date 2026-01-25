@@ -1,7 +1,9 @@
 <% if (locals.status) { %>
-    <ul>
-  <% status.forEach((state) => { %>
-    <li><%= state.msg %></li>
-  <% }) %>
-  </ul>
+  <div class="alert-panel">
+    <ul class="alert-list">
+      <% status.forEach((state) => { %>
+        <li class="alert-item"><%= state.msg %></li>
+      <% }) %>
+    </ul>
+  </div>
 <% } %>
